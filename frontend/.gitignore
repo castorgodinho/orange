@@ -36,3 +36,4 @@ jspm_packages
 # Optional REPL history #test
 .node_repl_history
 .next
+.DS_Store
