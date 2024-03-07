@@ -1,78 +1,14 @@
 "use client"
-import React, { useState } from "react"
 import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
-
-interface Credentials {
-  username: string
-  password: string
-}
-interface Err {
-  username: string
-  password: string
-}
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import useLoginValidation from "../helpers/useLoginValidation"
 
 const Login = (): React.ReactElement => {
-  const [credentials, setCredentials] = useState<Credentials>({
-    username: "",
-    password: "",
-  })
-  const [err, setErr] = useState<Err>({
-    username: "",
-    password: "",
-  })
-
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const { name, value } = event.target
-    setCredentials({
-      ...credentials,
-      [name]: value,
-    })
-  }
-  const handleForm = (event: React.ChangeEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-    const regexPatternPassword =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-    const regexPatternUsername = /^[a-zA-Z0-9_]{3,20}$/
-    const isUsernameValid = regexPatternUsername.test(credentials.username)
-    const isPasswordValid = regexPatternPassword.test(credentials.password)
-
-    if (!isUsernameValid) {
-      setErr((prevErr) => ({
-        ...prevErr,
-        username:
-          "Username must consist of alphanumeric characters or underscores, and be between 3 and 20 characters long.",
-      }))
-    } else {
-      setErr((prevErr) => ({
-        ...prevErr,
-        username: "",
-      }))
-    }
-
-    if (!isPasswordValid) {
-      setErr((prevErr) => ({
-        ...prevErr,
-        password:
-          "Password must contain at least one alphabetical character (uppercase or lowercase), one digit, one special character (@$!%*#?&), and be at least 8 characters long.",
-      }))
-    } else {
-      setErr((prevErr) => ({
-        ...prevErr,
-        password: "",
-      }))
-    }
-    if (isUsernameValid && isPasswordValid) {
-      setErr({
-        username: "",
-        password: "",
-      })
-    }
-  }
+  const [credentials, loginFormValidationError, handleInputChange, handleForm] =
+    useLoginValidation()
 
   return (
     <>
@@ -90,8 +26,7 @@ const Login = (): React.ReactElement => {
               <Grid container spacing={2}>
                 <Grid item xs={4}>
                   <img
-                    src="https://png.pngtree.com/element_our/png/20180903/orange-png-png_75700.jpg"
-                    alt="Orange"
+                    src="/images/orange.png"
                     width={100}
                     height={100}
                     align="center"
@@ -99,15 +34,22 @@ const Login = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid item xs={8}>
-                  <Typography
-                    variant="h2"
-                    gutterBottom
-                    color="orange"
-                    align="center"
-                    align="left"
-                  >
-                    Orange
-                  </Typography>
+                  <ThemeProvider theme={theme}>
+                    <Typography
+                      variant="h2"
+                      gutterBottom
+                      sx={{
+                        color: theme.palette.primary.main,
+                        marginBottom: 0,
+                        display: "flex",
+                        justifyContent: "left",
+                        alignItems: "center",
+                        height: "100%",
+                      }}
+                    >
+                      Orange
+                    </Typography>
+                  </ThemeProvider>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -122,8 +64,8 @@ const Login = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  {err.username}
-                  {err.username}
+                  {loginFormValidationError.username}
+                  {loginFormValidationError.username}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -138,15 +80,20 @@ const Login = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  {err.password}
+                  {loginFormValidationError.password}
                 </Grid>
                 <Grid item xs={12}>
                   <Button
                     type="submit"
                     variant="contained"
-                    sx={{ width: "100%" }}
+                    sx={{
+                      width: "100%",
+                      backgroundColor: "#EE4700",
+                      color: "white",
+                      padding: 1,
+                    }}
                   >
-                    Submit
+                    LOGIN
                   </Button>
                 </Grid>
               </Grid>
@@ -157,4 +104,18 @@ const Login = (): React.ReactElement => {
     </>
   )
 }
-export default Page
+
+export default Login
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FF5733",
+    },
+    secondary: {
+      main: "#E0C2FF",
+      light: "#F5EBFF",
+      contrastText: "#47008F",
+    },
+  },
+})
