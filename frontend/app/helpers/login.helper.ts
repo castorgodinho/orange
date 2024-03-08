@@ -1,51 +1,16 @@
-import { useState } from "react"
+export const LoginValidation = (credentials: UserCredentials, setCredentials: React.Dispatch<React.SetStateAction<UserCredentials>>, loginFormValidationError: ValidationError, setLoginFormValidationError: React.Dispatch<React.SetStateAction<ValidationError>>) => {
+const regexPatternPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
+const regexPatternUsername = /^[a-zA-Z0-9_]{3,20}$/
+const isUsernameValid = regexPatternUsername.test(credentials.username)
+const isPasswordValid = regexPatternPassword.test(credentials.password)
+const error = {}
+usernameValid(isUsernameValid, error)
+passwordValid(isPasswordValid, error)
+usernamePasswrodValid(isUsernameValid, isPasswordValid, setLoginFormValidationError)
+setLoginFormValidationError({...error})
 
-const LoginValidationComponent = (): [UserCredentials, ValidationError, (event: React.ChangeEvent<HTMLInputElement>) => void, (event: React.ChangeEvent<HTMLFormElement>) => void] => {
-const [credentials, setCredentials] = useState<UserCredentials>(defaultCredential)
-const [loginFormValidationError, setLoginFormValidationError] = useState<ValidationError>(defaultValidationError)
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = event.target
-    setCredentials({
-      ...credentials,
-      [name]: value
-    })
-  }
-
-  const onLogin = (event: React.ChangeEvent<HTMLFormElement>): void => {
-    event.preventDefault()
-    const regexPatternPassword = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
-    const regexPatternUsername = /^[a-zA-Z0-9_]{3,20}$/
-    const isUsernameValid = regexPatternUsername.test(credentials.username)
-    const isPasswordValid = regexPatternPassword.test(credentials.password)
-    const error = {}
-    usernameValid(isUsernameValid, error)
-    passwordValid(isPasswordValid, error)
-    usernamePasswrodValid(isUsernameValid, isPasswordValid, setLoginFormValidationError)
-    setLoginFormValidationError(error)
-  }
-
-  return [credentials, loginFormValidationError, handleInputChange, onLogin]
+return loginFormValidationError
 }
-interface UserCredentials {
-  username: string
-  password: string
-}
-const defaultCredential: UserCredentials = {
-  username: "",
-  password: ""
-}
-interface ValidationError {
-  username: string
-  password: string
-}
-const defaultValidationError: ValidationError = {
-  username: "",
-  password: ""
-}
-
-export default LoginValidationComponent
-
 const usernamePasswrodValid = (isUsernameValid: boolean, isPasswordValid: boolean, setLoginFormValidationError) =>{
   if (isUsernameValid && isPasswordValid) {
     setLoginFormValidationError({})
@@ -67,4 +32,3 @@ const usernameValid = (isUsernameValid: boolean, error: {}):void => {
     delete error.username
   }
 }
-
