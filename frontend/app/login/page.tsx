@@ -4,11 +4,11 @@ import Grid from "@mui/material/Grid"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import useLoginValidation from "../helpers/useLoginValidation"
+import LoginValidationComponent from "../helpers/login.helper"
 
 const Login = (): React.ReactElement => {
-  const [credentials, loginFormValidationError, handleInputChange, handleForm] =
-    useLoginValidation()
+  const [credentials, loginFormValidationError, handleInputChange, onLogin] =
+    LoginValidationComponent()
 
   return (
     <>
@@ -20,7 +20,7 @@ const Login = (): React.ReactElement => {
           height: "100vh",
         }}
       >
-        <form onSubmit={handleForm}>
+        <form onSubmit={onLogin}>
           <Grid sx={{ maxWidth: 545, p: 5 }}>
             <Grid item xs={6}>
               <Grid container spacing={2}>
@@ -64,8 +64,18 @@ const Login = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  {loginFormValidationError.username}
-                  {loginFormValidationError.username}
+                  <ThemeProvider theme={theme}>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      sx={{
+                        color: theme.palette.secondary.main,
+                        fontSize: "small",
+                      }}
+                    >
+                      {loginFormValidationError.username}
+                    </Typography>
+                  </ThemeProvider>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -80,7 +90,18 @@ const Login = (): React.ReactElement => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  {loginFormValidationError.password}
+                  <ThemeProvider theme={theme}>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      sx={{
+                        color: theme.palette.secondary.main,
+                        fontSize: "small",
+                      }}
+                    >
+                      {loginFormValidationError.password}
+                    </Typography>
+                  </ThemeProvider>
                 </Grid>
                 <Grid item xs={12}>
                   <Button
@@ -113,7 +134,7 @@ const theme = createTheme({
       main: "#FF5733",
     },
     secondary: {
-      main: "#E0C2FF",
+      main: "#f61919",
       light: "#F5EBFF",
       contrastText: "#47008F",
     },
