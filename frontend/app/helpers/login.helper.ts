@@ -45,13 +45,14 @@ const defaultValidationError: ValidationError = {
 }
 
 export default LoginValidationComponent
+
 const usernamePasswrodValid = (isUsernameValid: boolean, isPasswordValid: boolean, setLoginFormValidationError) =>{
   if (isUsernameValid && isPasswordValid) {
     setLoginFormValidationError({})
   }
 }
 
-const passwordValid = (isPasswordValid: boolean, error: {}) =>{
+const passwordValid = (isPasswordValid: boolean, error: {}):void =>{
   if (!isPasswordValid) {
     error.password = "Password must be at least 8 characters long and contain at least one letter, one digit, and one special character."
   } else {
@@ -59,7 +60,7 @@ const passwordValid = (isPasswordValid: boolean, error: {}) =>{
   }
 }
 
-const usernameValid = (isUsernameValid: boolean, error: {}) => {
+const usernameValid = (isUsernameValid: boolean, error: {}):void => {
   if (!isUsernameValid) {
     error.username = "Username must consist of alphanumeric characters between 3 and 20 characters long."
   } else {
