@@ -1,8 +1,7 @@
+"use-client"
 import React from "react"
 
-const Login = (a: number): React.ReactElement => {
-  console.log("Hi")
+const Page = (): React.ReactElement => {
   return <h1>Login Page</h1>
 }
-
-export default Login
+export default Page
