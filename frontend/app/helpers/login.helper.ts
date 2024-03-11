@@ -10,15 +10,12 @@ export const LoginValidation = (
   const isUsernameValid = regexPatternUsername.test(credentials.username)
   const isPasswordValid = regexPatternPassword.test(credentials.password)
 
-  setValidationError(
-    (prevError: ValidationError): ValidationError => ({
-      ...prevError,
-      username: isUsernameValid
-        ? ""
-        : "Invalid username. Please ensure it consists of alphanumeric characters between 3 and 20 characters long.",
-      password: isPasswordValid
-        ? ""
-        : "Invalid password. Requirements:- At least 1 letter, digit, and special character- Minimum 8 characters",
-    })
-  )
+  setValidationError({
+    username: isUsernameValid
+      ? ""
+      : "Invalid username. Please ensure it consists of alphanumeric characters between 3 and 20 characters long.",
+    password: isPasswordValid
+      ? ""
+      : "Invalid password. Requirements:- At least 1 letter, digit, and special character- Minimum 8 characters",
+  })
 }

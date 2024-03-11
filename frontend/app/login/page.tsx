@@ -28,39 +28,30 @@ const Login = (): React.ReactElement => {
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Grid sx={{ maxWidth: 545, p: 5 }}>
-        <Grid item xs={6}>
-          <Grid container spacing={2}>
-            <Grid item xs={4} style={{ textAlign: "right" }}>
-              <img src="/images/orange.png" width={100} height={100} />
-            </Grid>
-            <Grid item xs={8}>
-              <ThemeProvider theme={theme}>
-                <Typography variant="h2" gutterBottom sx={style.titleStyles}>
+    <div style={style.loginDiv}>
+      <ThemeProvider theme={theme}>
+        <Grid sx={style.loginGrid}>
+          <Grid item xs={6}>
+            <Grid container spacing={2}>
+              <Grid item xs={4} sx={style.logoGrid}>
+                <img src="/images/orange.png" style={style.logo} />
+              </Grid>
+              <Grid item xs={8}>
+                <Typography variant="h2" gutterBottom sx={style.title}>
                   Orange
                 </Typography>
-              </ThemeProvider>
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                type="text"
-                name="username"
-                label="Username"
-                variant="filled"
-                value={credentials.username}
-                onChange={onInputChange}
-                sx={{ width: "100%" }}
-              />
-            </Grid>
-            <ThemeProvider theme={theme}>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  type="text"
+                  name="username"
+                  label="Username"
+                  variant="filled"
+                  value={credentials.username}
+                  onChange={onInputChange}
+                  sx={style.inputfield}
+                />
+              </Grid>
               <Typography
                 variant="h6"
                 gutterBottom
@@ -68,19 +59,17 @@ const Login = (): React.ReactElement => {
               >
                 {validationError.username}
               </Typography>
-            </ThemeProvider>
-            <Grid item xs={12}>
-              <TextField
-                type="password"
-                name="password"
-                label="Password"
-                variant="filled"
-                value={credentials.password}
-                onChange={onInputChange}
-                sx={{ width: "100%" }}
-              />
-            </Grid>
-            <ThemeProvider theme={theme}>
+              <Grid item xs={12}>
+                <TextField
+                  type="password"
+                  name="password"
+                  label="Password"
+                  variant="filled"
+                  value={credentials.password}
+                  onChange={onInputChange}
+                  sx={style.inputfield}
+                />
+              </Grid>
               <Typography
                 variant="h6"
                 gutterBottom
@@ -88,9 +77,7 @@ const Login = (): React.ReactElement => {
               >
                 {validationError.password}
               </Typography>
-            </ThemeProvider>
-            <Grid item xs={12}>
-              <ThemeProvider theme={theme}>
+              <Grid item xs={12}>
                 <Button
                   type="submit"
                   variant="contained"
@@ -99,11 +86,11 @@ const Login = (): React.ReactElement => {
                 >
                   LOGIN
                 </Button>
-              </ThemeProvider>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </ThemeProvider>
     </div>
   )
 }
@@ -111,6 +98,7 @@ export interface UserCredentials {
   username: string
   password: string
 }
+
 const defaultCredential: UserCredentials = {
   username: "",
   password: "",
@@ -119,10 +107,12 @@ export interface ValidationError {
   username: string
   password: string
 }
+
 const defaultValidationError: ValidationError = {
   username: "",
   password: "",
 }
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -135,8 +125,29 @@ const theme = createTheme({
     },
   },
 })
+
 const style = {
-  titleStyles: {
+  loginDiv: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+  },
+  loginGrid: {
+    maxWidth: 545,
+    p: 5,
+  },
+  logoGrid: {
+    textAlign: "right",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  inputfield: {
+    width: "100%",
+  },
+  title: {
     color: theme.palette.primary.main,
     marginBottom: 0,
     display: "flex",
