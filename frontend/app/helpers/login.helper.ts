@@ -16,11 +16,6 @@ export const LoginValidation = (
       username: isUsernameValid
         ? ""
         : "Invalid username. Please ensure it consists of alphanumeric characters between 3 and 20 characters long.",
-    })
-  )
-  setValidationError(
-    (prevError: ValidationError): ValidationError => ({
-      ...prevError,
       password: isPasswordValid
         ? ""
         : "Invalid password. Requirements:- At least 1 letter, digit, and special character- Minimum 8 characters",
