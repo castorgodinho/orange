@@ -13,6 +13,7 @@
     "no-unused-vars": ["warn"],
     "no-console": ["warn", { "allow": ["error"] }],
     "@typescript-eslint/quotes": ["warn", "double"],
-    "@typescript-eslint/comma-dangle": "warn"
+    "@typescript-eslint/comma-dangle": "warn",
+    "@typescript-eslint/indent": "off"
   }
 }
