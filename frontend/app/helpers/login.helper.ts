@@ -1,6 +1,6 @@
 import { type UserCredentials, type ValidationError } from "@/app/login/page"
 
-export const LoginValidation = (
+export const loginValidation = (
   credentials: UserCredentials,
   setValidationError: React.Dispatch<React.SetStateAction<ValidationError>>
 ): void => {

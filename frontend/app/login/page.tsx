@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { LoginValidation } from "@/app/helpers/login.helper"
+import { loginValidation } from "@/app/helpers/login.helper"
 
 const Login = (): React.ReactElement => {
   const [credentials, setCredentials] =
@@ -24,11 +24,11 @@ const Login = (): React.ReactElement => {
 
   const onLogin = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault()
-    LoginValidation(credentials, setValidationError)
+    loginValidation(credentials, setValidationError)
   }
 
   return (
-    <div style={style.loginDiv}>
+    <div style={style.loginContainer}>
       <ThemeProvider theme={theme}>
         <Grid sx={style.loginGrid}>
           <Grid item xs={6}>
@@ -127,7 +127,7 @@ const theme = createTheme({
 })
 
 const style = {
-  loginDiv: {
+  loginContainer: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
