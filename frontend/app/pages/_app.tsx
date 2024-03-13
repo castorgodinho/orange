@@ -12,5 +12,5 @@ const MyApp: React.FC<AppProps> = ({
     </ThemeProvider>
   )
 }
-console.log("hello")
+
 export default MyApp

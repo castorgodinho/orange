@@ -12,5 +12,5 @@ const theme = createTheme({
     },
   },
 })
-console.log("hello")
+
 export default theme

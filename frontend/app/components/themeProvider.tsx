@@ -11,5 +11,5 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({
 }): React.ReactElement => {
   return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>
 }
-console.log("hello")
+
 export default ThemeProvider

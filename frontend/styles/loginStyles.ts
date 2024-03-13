@@ -46,6 +46,5 @@ const loginStyles = (theme: Theme): { [key: string]: React.CSSProperties } => ({
     padding: 1,
   },
 })
-console.log("hello")
 
 export default loginStyles
