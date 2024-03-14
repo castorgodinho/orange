@@ -1,16 +1,12 @@
 import React from "react"
 import { AppProps } from "next/app"
-import ThemeProvider from "@/app/components/themeProvider"
+import { ThemeProvider } from "@/app/components/theme-provider"
 
-const MyApp: React.FC<AppProps> = ({
+export const MyApp: React.FC<AppProps> = ({
   Component,
   pageProps,
-}): React.ReactElement => {
-  return (
-    <ThemeProvider>
-      <Component {...pageProps} />
-    </ThemeProvider>
-  )
-}
-
-export default MyApp
+}): React.ReactElement => (
+  <ThemeProvider>
+    <Component {...pageProps} />
+  </ThemeProvider>
+)

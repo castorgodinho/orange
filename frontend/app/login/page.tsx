@@ -4,10 +4,13 @@ import Typography from "@mui/material/Typography"
 import Grid from "@mui/material/Grid"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { ThemeProvider } from "@mui/material/styles"
 import { loginValidation } from "@/app/helpers/login.helper"
+import { LoginStyles } from "./styles/login-styles"
+import { theme } from "@/styles/theme"
 
 const Login = (): React.ReactElement => {
+  const style = LoginStyles(theme)
   const [credentials, setCredentials] =
     useState<UserCredentials>(defaultCredential)
   const [validationError, setValidationError] = useState<ValidationError>(
@@ -111,66 +114,6 @@ export interface ValidationError {
 const defaultValidationError: ValidationError = {
   username: "",
   password: "",
-}
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#FF5733",
-    },
-    secondary: {
-      main: "#f61919",
-      light: "#F5EBFF",
-      contrastText: "#47008F",
-    },
-  },
-})
-
-const style = {
-  loginContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100vh",
-  },
-  loginGrid: {
-    maxWidth: 545,
-    p: 5,
-  },
-  logoGrid: {
-    textAlign: "right",
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  inputfield: {
-    width: "100%",
-  },
-  title: {
-    color: theme.palette.primary.main,
-    marginBottom: 0,
-    display: "flex",
-    justifyContent: "left",
-    alignItems: "center",
-    height: "100%",
-  },
-  usernameErrorMessage: {
-    color: theme.palette.secondary.main,
-    fontSize: "small",
-    paddingLeft: "18px",
-  },
-  passwordErrorMessage: {
-    color: theme.palette.secondary.main,
-    fontSize: "small",
-    paddingLeft: "18px",
-  },
-  loginButton: {
-    width: "100%",
-    backgroundColor: theme.palette.primary.main,
-    color: "white",
-    padding: 1,
-  },
 }
 
 export default Login
