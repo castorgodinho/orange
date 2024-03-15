@@ -1,13 +1,8 @@
 import { Theme } from "@mui/material/styles"
 
-export const LoginStyles = (
-  theme: Theme
-): { [key: string]: React.CSSProperties } => {
-  const errorMessageStyle = {
-    color: theme.palette.secondary.main,
-    fontSize: "small",
-    paddingLeft: "18px",
-  }
+type styleObject = { [key: string]: React.CSSProperties }
+
+export const loginStyles = (theme: Theme): styleObject => {
   return {
     loginContainer: {
       display: "flex",
@@ -37,8 +32,12 @@ export const LoginStyles = (
       alignItems: "center",
       height: "100%",
     },
-    usernameErrorMessage: errorMessageStyle,
-    passwordErrorMessage: errorMessageStyle,
+    errorMessageStyle: {
+      color: theme.palette.secondary.main,
+      fontSize: "small",
+      paddingLeft: "18px",
+    },
+
     loginButton: {
       width: "100%",
       backgroundColor: theme.palette.primary.main,

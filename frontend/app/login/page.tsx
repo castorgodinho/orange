@@ -6,11 +6,11 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import { ThemeProvider } from "@mui/material/styles"
 import { loginValidation } from "@/app/helpers/login.helper"
-import { LoginStyles } from "./styles/login-styles"
+import { loginStyles } from "./styles/login-styles"
 import { theme } from "@/styles/theme"
 
 const Login = (): React.ReactElement => {
-  const style = LoginStyles(theme)
+  const style = loginStyles(theme)
   const [credentials, setCredentials] =
     useState<UserCredentials>(defaultCredential)
   const [validationError, setValidationError] = useState<ValidationError>(
@@ -58,7 +58,7 @@ const Login = (): React.ReactElement => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={style.usernameErrorMessage}
+                sx={style.errorMessageStyle}
               >
                 {validationError.username}
               </Typography>
@@ -76,7 +76,7 @@ const Login = (): React.ReactElement => {
               <Typography
                 variant="h6"
                 gutterBottom
-                sx={style.passwordErrorMessage}
+                sx={style.errorMessageStyle}
               >
                 {validationError.password}
               </Typography>
