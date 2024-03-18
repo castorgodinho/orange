@@ -1,8 +1,6 @@
 import { Theme } from "@mui/material/styles"
 
-type styleObject = { [key: string]: React.CSSProperties }
-
-export const loginStyles = (theme: Theme): styleObject => {
+export const loginStyles = (theme: Theme): StyleObject => {
   return {
     loginContainer: {
       display: "flex",
@@ -46,3 +44,5 @@ export const loginStyles = (theme: Theme): styleObject => {
     },
   }
 }
+
+type StyleObject = { [key: string]: React.CSSProperties }
