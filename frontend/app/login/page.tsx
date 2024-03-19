@@ -8,6 +8,7 @@ import { ThemeProvider } from "@mui/material/styles"
 import { loginValidation } from "@/app/helpers/login.helper"
 import { loginStyles } from "./styles/login-styles"
 import { theme } from "@/styles/theme"
+import axios from "../helpers/axios"
 
 const Login = (): React.ReactElement => {
   const style = loginStyles(theme)
@@ -28,6 +29,7 @@ const Login = (): React.ReactElement => {
   const onLogin = (event: React.MouseEvent<HTMLButtonElement>): void => {
     event.preventDefault()
     loginValidation(credentials, setValidationError)
+    axios.post("/login", credentials)
   }
 
   return (
