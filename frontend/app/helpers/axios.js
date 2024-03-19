@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 const axiosInstance = axios.create({
-    baseURL: "http://127.0.0.1:5015",
+    baseURL: "http://192.168.0.206:5050",
 })
 
 axiosInstance.interceptors.request.use(async config => {
